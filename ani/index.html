@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Інтенсив з комерційної нерухомості</title>
+<meta name="description" content="Інтенсив для ріелторів: перехід від житлової до комерційної нерухомості, пошук об'єктів, план на 30 днів і кваліфікація клієнта. Три живі заняття в Zoom.">
+<meta property="og:title" content="Інтенсив з комерційної нерухомості для ріелторів">
+<meta property="og:description" content="Три живі заняття в Zoom: перші кроки і система роботи в комерційній нерухомості.">
+<meta property="og:image" content="img/white_34.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1533; --muted:#5b6785; --blue:#1d4ed8; --blue2:#2f6bff; --sky:#3ba7ff; --ice:#eef4ff; --line:#dfe7fb;
+  --bg:#f7f9ff; --white:#fff; --ok:#16b981;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+h1,h2,h3{font-family:Montserrat,Manrope,sans-serif;letter-spacing:-.3px}
+.blue{color:var(--blue2)}
+
+/* м'які сині хвилі на фоні */
+.waves{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.waves i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 18s ease-in-out infinite alternate}
+.waves i:nth-child(1){width:620px;height:260px;left:-180px;top:80px;background:#9cc4ff;transform:rotate(-18deg)}
+.waves i:nth-child(2){width:700px;height:220px;right:-220px;top:420px;background:#7fb3ff;transform:rotate(14deg);animation-delay:-6s}
+.waves i:nth-child(3){width:560px;height:200px;left:10%;top:1100px;background:#b9d6ff;transform:rotate(-8deg);animation-delay:-12s}
+@keyframes drift{to{transform:translate(60px,40px) rotate(6deg)}}
+
+/* верхнє меню + липка панель з відліком */
+.top{position:sticky;top:0;z-index:60;padding-top:env(safe-area-inset-top);background:rgba(247,249,255,.78);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.top.sc{border-color:var(--line);box-shadow:0 6px 24px rgba(29,78,216,.08)}
+.top .wrap{display:flex;align-items:center;gap:22px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:8px;font-family:Montserrat,sans-serif;font-weight:800;font-size:17px;text-decoration:none;white-space:nowrap}
+.logo b{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--sky));color:#fff;font-size:15px}
+.nav{display:flex;gap:20px;margin-left:auto}
+.nav a{text-decoration:none;color:var(--muted);font-weight:600;font-size:14px}
+.nav a:hover{color:var(--blue)}
+.timer{display:none;align-items:center;gap:8px;margin-left:auto;font-weight:700;font-size:13px;color:var(--muted)}
+.timer .t{display:flex;gap:4px}
+.timer .t span{min-width:34px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:9px;padding:2px 5px;font-family:Montserrat,sans-serif;font-weight:800;font-size:14px;color:var(--ink);line-height:1.3}
+.timer .t small{display:block;font-size:8px;font-weight:700;color:var(--muted);letter-spacing:.3px}
+.top.sc .timer{display:flex}.top.sc .nav{display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:800;border-radius:14px;padding:16px 30px;font-size:16px;white-space:nowrap;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 10px 26px rgba(29,78,216,.32)}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(29,78,216,.42)}
+.btn-light{background:#fff;color:var(--blue);border:1.5px solid var(--line)}
+.top .btn{padding:10px 18px;font-size:14px;border-radius:12px}
+
+/* HERO */
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding-block:56px 30px}
+h1{font-weight:800;font-size:clamp(30px,4.6vw,52px);line-height:1.12;margin:0 0 18px;text-wrap:balance}
+.lead{font-size:18px;color:var(--muted);margin:0 0 30px;max-width:32em}
+.lead b{color:var(--ink)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.feats div{display:flex;gap:10px;align-items:flex-start;font-weight:700;font-size:14px;line-height:1.35;min-width:0}
+.feats i{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--blue2);color:#fff;font-style:normal;font-size:13px}
+.visual{position:relative;min-height:440px}
+.photo{position:absolute;right:0;top:0;width:78%;aspect-ratio:4/5;border-radius:26px;overflow:hidden;background:linear-gradient(160deg,#3b82f6,#0b1533);box-shadow:0 30px 70px rgba(29,78,216,.22)}
+.photo img{width:100%;height:100%;object-fit:cover;animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+.bub{position:absolute;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:9px 14px;font-weight:700;font-size:13px;box-shadow:0 10px 26px rgba(11,21,51,.12);opacity:0;transform:translateY(14px) scale(.96);animation:pop .6s cubic-bezier(.2,.9,.3,1.3) forwards}
+.bub.me{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:0}
+.b1{left:0;top:9%;animation-delay:.4s}.b2{left:22%;top:23%;animation-delay:1.1s}.b3{left:2%;top:39%;animation-delay:1.8s}
+.b4{left:26%;top:53%;animation-delay:2.5s}.b5{left:0;top:69%;max-width:250px;animation-delay:3.2s}
+@keyframes pop{to{opacity:1;transform:none}}
+
+section{padding-block:80px}
+h2{font-weight:800;font-size:clamp(26px,3.6vw,38px);line-height:1.15;margin:0 0 10px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 34px;max-width:40em;font-size:17px}
+.panel{background:rgba(255,255,255,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:30px;padding:44px;box-shadow:0 20px 60px rgba(29,78,216,.07)}
+
+/* поява */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.l{transform:translateX(-50px)}.rv.r{transform:translateX(50px)}.rv.z{transform:scale(.92)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+/* Як записатися: таймлайн */
+.tl{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-top:44px}
+.tl::before{content:"";position:absolute;left:4%;right:4%;top:15px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--sky))}
+.st{position:relative;min-width:0}
+.st .dot{position:absolute;left:50%;top:-44px;margin-left:-16px;width:32px;height:32px;border-radius:50%;background:var(--blue2);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;box-shadow:0 0 0 6px #dbe8ff}
+.st .c{border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--line);min-height:150px;position:relative}
+.st .c img{width:100%;height:150px;object-fit:cover}
+.st .c.ph{background:linear-gradient(160deg,#3b82f6,#0b1533)}
+.st .c .cap{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(11,21,51,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border-radius:12px;padding:8px 10px;font-weight:700;font-size:13px;line-height:1.35}
+.st .c.txt{padding:18px;display:flex;flex-direction:column;justify-content:center;font-weight:700;font-size:14px;color:var(--ink)}
+.st .c.txt i{font-style:normal;display:inline-block;background:var(--ice);color:var(--blue);border-radius:8px;padding:3px 8px;font-size:12px;margin-bottom:8px;align-self:flex-start}
+.center{text-align:center;margin-top:34px}
+.center small{display:block;color:var(--muted);font-size:13px;margin-top:8px}
+
+/* Для кого */
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.wcard{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;min-width:0;transition:transform .3s,box-shadow .3s}
+.wcard:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(29,78,216,.14)}
+.wcard .im{height:170px;background:linear-gradient(160deg,#3b82f6,#0b1533);overflow:hidden}
+.wcard .im img{width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.wcard:hover .im img{transform:scale(1.07)}
+.wcard .bd{padding:22px}
+.wcard h3{margin:0 0 6px;font-size:18px}
+.wcard p{margin:0;color:var(--muted)}
+
+/* Програма */
+.prog{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.day{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;min-width:0;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.day:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(29,78,216,.14)}
+.day .n{font-family:Montserrat,sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;color:#fff;background:linear-gradient(135deg,var(--blue),var(--sky));border-radius:10px;padding:6px 12px;display:inline-block;margin-bottom:16px}
+.day .bg{position:absolute;right:-6px;top:-18px;font-family:Montserrat,sans-serif;font-weight:800;font-size:110px;color:var(--ice);line-height:1;z-index:0}
+.day > *{position:relative;z-index:1}
+.day h3{margin:0 0 8px;font-size:19px;line-height:1.3}
+.day p{margin:0 0 14px;color:var(--muted)}
+.day .pr{display:flex;gap:8px;align-items:center;background:var(--ice);border-radius:12px;padding:10px 12px;font-weight:700;font-size:14px}
+.day .pr i{font-style:normal;color:var(--ok)}
+
+/* Ціна */
+.price{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:linear-gradient(135deg,var(--blue),var(--blue2) 55%,var(--sky));color:#fff;border-radius:30px;padding:46px;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(29,78,216,.3)}
+.price::after{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.12)}
+.price .sum{font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(46px,8vw,76px);line-height:1}
+.price p{margin:10px 0 0;opacity:.92}
+.price .btn{background:#fff;color:var(--blue);box-shadow:0 10px 26px rgba(0,0,0,.18);position:relative;z-index:1}
+
+.quiz{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;margin-top:22px;background:#fff;border:1.5px dashed #9cbcff;border-radius:24px;padding:26px}
+.quiz .ic{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:var(--ice);font-size:28px}
+.quiz h3{margin:0 0 4px;font-size:20px}
+.quiz p{margin:0;color:var(--muted)}
+
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-weight:800;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--blue2);font-size:24px;line-height:1;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:10px 0 0;color:var(--muted)}
+
+footer{padding-block:36px 120px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer a{color:var(--blue)}
+
+@media (max-width:960px){
+  .nav{display:none}
+  .hero .wrap{grid-template-columns:1fr;padding-block:30px 10px}
+  .visual{min-height:400px;max-width:460px;width:100%;justify-self:center}
+  .feats{grid-template-columns:1fr;gap:12px;margin-top:28px}
+  .tl{grid-template-columns:1fr 1fr;row-gap:56px}
+  .tl::before{display:none}
+  .who,.prog{grid-template-columns:1fr}
+  .price{grid-template-columns:1fr;padding:34px}
+  .quiz{grid-template-columns:1fr}
+  .quiz .ic{display:none}
+  .panel{padding:28px 20px}
+}
+@media (max-width:520px){
+  .top .wrap{gap:10px}
+  .logo span{display:none}
+  .timer .lb{display:none}
+  .tl{grid-template-columns:1fr}
+  .cta .btn,.price .btn,.quiz .btn,.center .btn{width:100%}
+  .photo{width:84%}
+  .bub{font-size:12px;padding:8px 11px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.bub{opacity:1;transform:none}}
+.st .ph img,.wcard .im img{object-position:50% 18%}
+.author{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.author .ap{border-radius:26px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 70px rgba(29,78,216,.18)}
+.author .ap img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+@media(max-width:760px){.author{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="waves" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<div class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#"><b>✓</b><span>Комерційна нерухомість</span></a>
+    <nav class="nav"><a href="#who">Для кого</a><a href="#program">Програма</a><a href="#result">Результат</a><a href="#faq">Питання</a></nav>
+    <div class="timer"><span class="lb" id="lb">Встигніть забронювати місце</span><div class="t" id="t"></div></div>
+    <a class="btn btn-blue" href="https://t.me/Realtor_education_bot?start=int">Забронювати місце</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1 class="rv">Комерційна нерухомість: <span class="blue">перші кроки</span> і система роботи за 3 дні</h1>
+      <p class="lead rv d1">Три живі заняття в Zoom: <b>від житлової до комерційної</b>, пошук об'єктів і власників, <b>план на 30 днів</b> і як розпізнати клієнта, з яким варто працювати</p>
+      <div class="cta rv d2"><a class="btn btn-blue" href="https://t.me/Realtor_education_bot?start=int">Хочу на інтенсив</a></div>
+      <div class="feats rv d3">
+        <div><i>✓</i>Три живі заняття в Zoom, по одному щодня</div>
+        <div><i>⚡</i>Практика наприкінці кожного дня</div>
+        <div><i>▶</i>Записи занять</div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="photo"><img src="img/white_34.jpg" style="object-position:50% 12%" alt="Анна Анастасієва" onerror="this.remove()"></div>
+      <div class="bub b1">🏢 Офіси, склади, ритейл</div>
+      <div class="bub me b2">✓ Чернетка оголошення</div>
+      <div class="bub b3">Пошук об'єктів і власників</div>
+      <div class="bub me b4">✓ План на 30 днів</div>
+      <div class="bub b5">✓ Картка кваліфікації клієнта: холодний, теплий чи гарячий</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="result" style="padding-top:40px">
+  <div class="wrap">
+    <div class="panel rv">
+      <h2>З чим ви вийдете після трьох днів</h2>
+      <p class="sub" style="margin-bottom:10px">Кожен день закінчується практикою, тож у вас на руках будуть готові робочі інструменти</p>
+      <div class="tl">
+        <div class="st rv d1"><div class="dot">1</div><div class="c ph"><img src="img/office.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="cap">Чернетка оголошення про комерційний об'єкт</div></div></div>
+        <div class="st rv d2"><div class="dot">2</div><div class="c txt"><i>День 2</i>План на 30 днів: де шукати об'єкти і власників</div></div>
+        <div class="st rv d3"><div class="dot">3</div><div class="c ph"><img src="img/meeting.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="cap">Картка кваліфікації клієнта</div></div></div>
+        <div class="st rv d3"><div class="dot">✓</div><div class="c txt"><i>Результат</i>Розумієте, з чого почати в комерційній і що робити перший місяць</div></div>
+      </div>
+      <div class="center"><a class="btn btn-blue" href="https://t.me/Realtor_education_bot?start=int">Хочу на інтенсив</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="who" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="rv">Для кого інтенсив</h2>
+    <p class="sub rv">Якщо ви дивитесь у бік комерційної нерухомості і хочете зрозуміти, з чого почати</p>
+    <div class="who">
+      <div class="wcard rv l"><div class="im"><img src="img/keys.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Працюєте з житловою</h3><p>Думаєте про перехід у комерційну і хочете зрозуміти, що там інакше.</p></div></div>
+      <div class="wcard rv d1"><div class="im"><img src="img/black.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Вже пробуєте комерційну</h3><p>Хочете системи: де брати об'єкти, як говорити з власником, кого брати в роботу.</p></div></div>
+      <div class="wcard rv r d2"><div class="im"><img src="img/red.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Тільки починаєте</h3><p>Хочете одразу стартувати з правильних кроків і мати план на перший місяць.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="program" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="rv">Програма по днях</h2>
+    <p class="sub rv">Три живі заняття в Zoom, по одному щодня</p>
+    <div class="prog">
+      <div class="day rv z"><span class="bg">1</span><span class="n">ДЕНЬ 1</span><h3>Від житлової до комерційної нерухомості</h3><p>Що змінюється при переході: інші клієнти, інші об'єкти, інша розмова з власником.</p><div class="pr"><i>✓</i>Практика: чернетка оголошення</div></div>
+      <div class="day rv z d1"><span class="bg">2</span><span class="n">ДЕНЬ 2</span><h3>Пошук об'єктів і план на 30 днів</h3><p>Де шукати об'єкти і власників, щоб у вас з'явилась своя база.</p><div class="pr"><i>✓</i>Практика: план на 30 днів</div></div>
+      <div class="day rv z d2"><span class="bg">3</span><span class="n">ДЕНЬ 3</span><h3>Холодний, теплий і гарячий клієнт</h3><p>Як розрізнити клієнтів і що робити з кожним далі, щоб не витрачати час на тих, хто не купить.</p><div class="pr"><i>✓</i>Практика: картка кваліфікації клієнта</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="price rv z">
+      <div>
+        <div style="font-weight:800;letter-spacing:1px;font-size:12px;text-transform:uppercase;opacity:.85">Вартість інтенсиву</div>
+        <div class="sum">500 грн</div>
+        <p>за всі три дні: живі заняття в Zoom, практика і записи</p>
+      </div>
+      <a class="btn" href="https://t.me/Realtor_education_bot?start=int">Забронювати місце</a>
+    </div>
+  </div>
+</section>
+
+<section id="author" style="padding-top:20px">
+  <div class="wrap">
+    <div class="panel rv author">
+      <div class="ap"><img src="img/terrace.jpg" alt="Анна Анастасієва" loading="lazy"></div>
+      <div>
+        <h2>Ведуча інтенсиву</h2>
+        <p style="font-size:22px;font-weight:800;margin:6px 0 10px">Анна Анастасієва</p>
+        <p class="sub">Працюю з комерційною нерухомістю: офіси, склади, ритейл. На інтенсиві ділюся системою, з якою сама веду власників, об'єкти й угоди.</p>
+        <div style="margin-top:18px"><a class="btn btn-blue" href="https://t.me/Realtor_education_bot?start=int">Хочу на інтенсив</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="rv">Часті запитання</h2>
+    <details class="rv"><summary>Чи будуть записи?</summary><p>Так, записи будуть. Строк доступу до них повідомимо перед оплатою.</p></details>
+    <details class="rv"><summary>Як проходять заняття?</summary><p>Три живі заняття в Zoom, по одному щодня. Кожне закінчується практичним завданням.</p></details>
+    <details class="rv"><summary>Скільки коштує?</summary><p>500 грн за всі три дні інтенсиву.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color:var(--ink)">Інтенсив з комерційної нерухомості для ріелторів</b></p>
+  </div>
+</footer>
+
+<script>
+/* Дата, до якої йде відлік (за Києвом), формат "2026-11-20 19:00". Порожньо = замість цифр напис «Набір відкрито». */
+var DEADLINE = "";
+(function(){
+  var top=document.getElementById('top');
+  function onScroll(){ top.classList.toggle('sc', window.scrollY > 380); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  var t=document.getElementById('t');
+  if(!DEADLINE){ t.innerHTML='<span style="min-width:0;padding:3px 10px">Набір відкрито</span>'; }
+  else{
+    var end=new Date(DEADLINE.replace(' ','T')+':00+02:00').getTime();
+    var p=function(n){return (n<10?'0':'')+n};
+    var tick=function(){
+      var s=Math.max(0,Math.floor((end-Date.now())/1000));
+      t.innerHTML='<span>'+Math.floor(s/86400)+'<small>ДН</small></span><span>'+p(Math.floor(s%86400/3600))+'<small>ГОД</small></span><span>'+p(Math.floor(s%3600/60))+'<small>ХВ</small></span><span>'+p(s%60)+'<small>СЕК</small></span>';
+    };
+    tick(); setInterval(tick,1000);
+  }
+
+  var io='IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12,rootMargin:'0px 0px -30px 0px'}) : null;
+  document.querySelectorAll('.rv').forEach(function(el){ io ? io.observe(el) : el.classList.add('in'); });
+})();
+</script>
+</body>
+</html>
