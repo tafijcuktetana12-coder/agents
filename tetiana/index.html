@@ -482,7 +482,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSel();
 function t(){var l=Math.max(0,end-Date.now());document.getElementById('cd_d').textContent=p(Math.floor(l/864e5));document.getElementById('cd_h').textContent=p(Math.floor(l/36e5)%24);document.getElementById('cd_m').textContent=p(Math.floor(l/6e4)%60);document.getElementById('cd_s').textContent=p(Math.floor(l/1e3)%60)}
 t();setInterval(t,1000)})();
 
-(function(){var FEED='__FEED__';if(!FEED)return;
+(function(){var FEED='https://worker-production-f139.up.railway.app/recent.json';if(!FEED)return;
 var css=document.createElement('style');css.textContent='.toast{position:fixed;left:12px;bottom:16px;z-index:9;max-width:300px;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px 14px 12px 12px;display:flex;gap:10px;align-items:center;font:600 13px/1.35 Manrope,sans-serif;color:#1a1a1a;transform:translateY(140%);opacity:0;transition:transform .45s,opacity .45s}.toast.on{transform:none;opacity:1}.toast i{flex:0 0 34px;height:34px;border-radius:50%;background:#e8332a;display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal}.toast small{display:block;font:500 11px Manrope,sans-serif;color:#8a8a8a;margin-top:2px}';document.head.appendChild(css);
 var el=document.createElement('div');el.className='toast';el.setAttribute('role','status');document.body.appendChild(el);
 function ago(t){var m=Math.round((Date.now()-Date.parse(t))/6e4);if(m<1)return'щойно';if(m<60)return m+' хв тому';var h=Math.round(m/60);if(h<24)return h+' год тому';var d=Math.round(h/24);return d+(d===1?' день':d<5?' дні':' днів')+' тому'}
