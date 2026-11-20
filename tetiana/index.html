@@ -33,6 +33,28 @@ a{color:#e8332a}a:hover{color:#1a1a1a}
 .mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
 @media (min-width:820px){.mini{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .mini img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:18px;display:block}
+
+/* 20.11 анімації */
+@keyframes flyin{from{opacity:0;transform:translateY(40px) scale(.96)}to{opacity:1;transform:none}}
+.mini article,.cat article{animation:flyin .7s cubic-bezier(.2,.8,.2,1) both}
+.mini article:nth-child(4n+2),.cat article:nth-child(4n+2){animation-delay:.08s}
+.mini article:nth-child(4n+3),.cat article:nth-child(4n+3){animation-delay:.16s}
+.mini article:nth-child(4n+4),.cat article:nth-child(4n+4){animation-delay:.24s}
+@supports (animation-timeline: view()){.mini article,.cat article{animation-timeline:view();animation-range:entry 0% entry 60%;animation-delay:0s}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,51,42,.55)}70%{box-shadow:0 0 0 12px rgba(232,51,42,0)}100%{box-shadow:0 0 0 0 rgba(232,51,42,0)}}
+.more,.cta{animation:pulse 2.2s infinite}
+.badge{position:absolute;right:8px;top:8px;background:#ffeb5a;color:#1a1a1a;font:800 13px Unbounded,sans-serif;padding:6px 9px;border-radius:12px;transform:rotate(8deg);box-shadow:0 6px 14px rgba(0,0,0,.2);animation:hop 4s infinite}
+@keyframes hop{0%,84%,100%{transform:rotate(8deg) translateY(0)}88%{transform:rotate(-4deg) translateY(-8px) scale(1.12)}92%{transform:rotate(10deg) translateY(0)}96%{transform:rotate(6deg) translateY(-3px)}}
+@keyframes flip{0%,88%{transform:rotateX(0)}94%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+.flip{display:inline-block;animation:flip 1s infinite;transform-origin:50% 60%}
+.snow{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.snow i{position:absolute;top:-12px;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.85;box-shadow:0 0 6px rgba(160,160,180,.6);animation:fall linear infinite}
+@keyframes fall{to{transform:translate3d(30px,105vh,0)}}
+.ask{position:fixed;right:78px;bottom:26px;z-index:6;background:#ffffff;color:#1a1a1a;font:600 13px Manrope,sans-serif;padding:9px 13px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.18);text-decoration:none;animation:askpop 10s infinite}
+@keyframes askpop{0%,6%{opacity:0;transform:translateX(10px)}10%,40%{opacity:1;transform:none}46%,100%{opacity:0;transform:translateX(10px)}}
+@keyframes bounce{0%,90%,100%{transform:translateY(0)}93%{transform:translateY(-12px)}96%{transform:translateY(0)}98%{transform:translateY(-5px)}}
+.agentbtn{animation:bounce 10s infinite}
+@media (prefers-reduced-motion: reduce){.mini article,.cat article,.more,.cta,.badge,.flip,.snow i,.ask,.agentbtn{animation:none!important}.snow{display:none}.ask{opacity:1}}
 .dl .g{display:block;padding:16px 0 6px;color:#1a1a1a;font:600 14px Unbounded,sans-serif;text-decoration:none}
 </style>
 
@@ -42,6 +64,7 @@ a{color:#e8332a}a:hover{color:#1a1a1a}
 
 <div style="font-family: Manrope, sans-serif; color: #1a1a1a; background: #ffffff; position: relative; min-height: 100vh">
 
+<div class="snow" aria-hidden="true"><i style="left: 72%; width: 7px; height: 7px; animation-duration: 10s; animation-delay: -7s; opacity: 0.78"></i><i style="left: 74%; width: 6px; height: 6px; animation-duration: 9s; animation-delay: -18s; opacity: 0.76"></i><i style="left: 6%; width: 8px; height: 8px; animation-duration: 12s; animation-delay: -1s; opacity: 0.75"></i><i style="left: 17%; width: 5px; height: 5px; animation-duration: 13s; animation-delay: -13s; opacity: 0.56"></i><i style="left: 15%; width: 5px; height: 5px; animation-duration: 18s; animation-delay: -9s; opacity: 0.75"></i><i style="left: 87%; width: 10px; height: 10px; animation-duration: 11s; animation-delay: -3s; opacity: 0.76"></i><i style="left: 81%; width: 5px; height: 5px; animation-duration: 12s; animation-delay: -11s; opacity: 0.54"></i><i style="left: 91%; width: 7px; height: 7px; animation-duration: 10s; animation-delay: -18s; opacity: 0.53"></i><i style="left: 26%; width: 10px; height: 10px; animation-duration: 16s; animation-delay: -17s; opacity: 0.69"></i><i style="left: 40%; width: 5px; height: 5px; animation-duration: 16s; animation-delay: -18s; opacity: 0.92"></i><i style="left: 46%; width: 10px; height: 10px; animation-duration: 13s; animation-delay: -7s; opacity: 0.86"></i><i style="left: 89%; width: 6px; height: 6px; animation-duration: 12s; animation-delay: -2s; opacity: 0.76"></i><i style="left: 67%; width: 5px; height: 5px; animation-duration: 16s; animation-delay: -10s; opacity: 0.83"></i><i style="left: 36%; width: 5px; height: 5px; animation-duration: 18s; animation-delay: -2s; opacity: 0.55"></i><i style="left: 53%; width: 8px; height: 8px; animation-duration: 11s; animation-delay: -10s; opacity: 0.57"></i><i style="left: 62%; width: 8px; height: 8px; animation-duration: 15s; animation-delay: -1s; opacity: 0.93"></i><i style="left: 9%; width: 5px; height: 5px; animation-duration: 17s; animation-delay: -18s; opacity: 0.86"></i><i style="left: 40%; width: 6px; height: 6px; animation-duration: 14s; animation-delay: -11s; opacity: 0.77"></i><i style="left: 74%; width: 5px; height: 5px; animation-duration: 16s; animation-delay: -2s; opacity: 0.88"></i><i style="left: 34%; width: 10px; height: 10px; animation-duration: 16s; animation-delay: -2s; opacity: 0.53"></i><i style="left: 89%; width: 8px; height: 8px; animation-duration: 13s; animation-delay: -18s; opacity: 0.95"></i><i style="left: 57%; width: 5px; height: 5px; animation-duration: 13s; animation-delay: -12s; opacity: 0.90"></i></div>
 <header style="position: sticky; top: 0; z-index: 5; background: #ffffff">
 <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px">
 <div style="display: flex; align-items: center; gap: 10px">
@@ -85,7 +108,7 @@ a{color:#e8332a}a:hover{color:#1a1a1a}
 <span style="min-width: 46px; padding: 6px 4px; border-radius: 10px; background: #e8332a; color: #ffffff; text-align: center; font: 700 16px Unbounded, sans-serif"><span id="cd_d">00</span><span style="display: block; font: 600 9px Manrope, sans-serif; letter-spacing: .5px">ДН</span></span>
 <span style="min-width: 46px; padding: 6px 4px; border-radius: 10px; background: #1a1a1a; color: #ffffff; text-align: center; font: 700 16px Unbounded, sans-serif"><span id="cd_h">00</span><span style="display: block; font: 600 9px Manrope, sans-serif; letter-spacing: .5px">ГОД</span></span>
 <span style="min-width: 46px; padding: 6px 4px; border-radius: 10px; background: #ffeb5a; color: #1a1a1a; text-align: center; font: 700 16px Unbounded, sans-serif"><span id="cd_m">00</span><span style="display: block; font: 600 9px Manrope, sans-serif; letter-spacing: .5px">ХВ</span></span>
-<span style="min-width: 46px; padding: 6px 4px; border-radius: 10px; background: #e8332a; color: #ffffff; text-align: center; font: 700 16px Unbounded, sans-serif"><span id="cd_s">00</span><span style="display: block; font: 600 9px Manrope, sans-serif; letter-spacing: .5px">СЕК</span></span>
+<span style="min-width: 46px; padding: 6px 4px; border-radius: 10px; background: #e8332a; color: #ffffff; text-align: center; font: 700 16px Unbounded, sans-serif"><span class="flip"><span id="cd_s">00</span></span><span style="display: block; font: 600 9px Manrope, sans-serif; letter-spacing: .5px">СЕК</span></span>
 </span>
 </div>
 <div style="font: 700 17px/1.3 Unbounded, sans-serif">МІНІ-ПРОДУКТИ! ВСЬОГО <span style="color: #e8332a">359 грн</span> <span style="font: 500 13px Manrope, sans-serif; color: #6b6b6b">(звичайна ціна <s>999</s>)</span></div>
@@ -99,98 +122,98 @@ a{color:#e8332a}a:hover{color:#1a1a1a}
 <div class="mini">
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/manychat.jpg" alt="Як налаштувати ManyChat?">
+<div style="position: relative"><img src="img/manychat.jpg" alt="Як налаштувати ManyChat?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як налаштувати ManyChat?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(0)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/gptkar.jpg" alt="Як налаштувати створення каруселей?">
+<div style="position: relative"><img src="img/gptkar.jpg" alt="Як налаштувати створення каруселей?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як налаштувати створення каруселей?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(1)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/claudekar.jpg" alt="Як створювати каруселі через Claude?">
+<div style="position: relative"><img src="img/claudekar.jpg" alt="Як створювати каруселі через Claude?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як створювати каруселі через Claude?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(2)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/rozvag.jpg" alt="Як створити розважальний контент?">
+<div style="position: relative"><img src="img/rozvag.jpg" alt="Як створити розважальний контент?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як створити розважальний контент?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(3)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/prodazh.jpg" alt="Як продавати в лоб?">
+<div style="position: relative"><img src="img/prodazh.jpg" alt="Як продавати в лоб?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як продавати в лоб?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(4)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/reels.jpg" alt="Формати Reels">
+<div style="position: relative"><img src="img/reels.jpg" alt="Формати Reels"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Формати Reels</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(5)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/upak.jpg" alt="Як упакувати свої послуги і продукти?">
+<div style="position: relative"><img src="img/upak.jpg" alt="Як упакувати свої послуги і продукти?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як упакувати свої послуги і продукти?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(6)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/video.jpg" alt="Як створювати відеоролики та мультфільми через нейромережі?">
+<div style="position: relative"><img src="img/video.jpg" alt="Як створювати відеоролики та мультфільми через нейромережі?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як створювати відеоролики та мультфільми через нейромережі?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(7)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/testy.jpg" alt="Як просуватися за допомогою тестів?">
+<div style="position: relative"><img src="img/testy.jpg" alt="Як просуватися за допомогою тестів?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як просуватися за допомогою тестів?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(8)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/masht1.jpg" alt="Масштабування ч.1: Facebook, Telegram, YouTube">
+<div style="position: relative"><img src="img/masht1.jpg" alt="Масштабування ч.1: Facebook, Telegram, YouTube"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Масштабування ч.1: Facebook, Telegram, YouTube</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(9)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/masht2.jpg" alt="Масштабування ч.2: Threads, TikTok, Pinterest">
+<div style="position: relative"><img src="img/masht2.jpg" alt="Масштабування ч.2: Threads, TikTok, Pinterest"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Масштабування ч.2: Threads, TikTok, Pinterest</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(10)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/probnyi.jpg" alt="Як просуватися через пробний режим в Instagram?">
+<div style="position: relative"><img src="img/probnyi.jpg" alt="Як просуватися через пробний режим в Instagram?"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Як просуватися через пробний режим в Instagram?</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(11)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/capcut.jpg" alt="Практичний курс: монтаж в CapCut!">
+<div style="position: relative"><img src="img/capcut.jpg" alt="Практичний курс: монтаж в CapCut!"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Практичний курс: монтаж в CapCut!</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(12)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
 </article>
 
 <article style="display: flex; flex-direction: column; gap: 8px; height: 100%">
-<img src="img/paket3.jpg" alt="Пакет 3 в 1: три закриті канали">
+<div style="position: relative"><img src="img/paket3.jpg" alt="Пакет 3 в 1: три закриті канали"><span class="badge" aria-label="знижка 64 відсотки">−64%</span></div>
 <div style="font: 600 13px/1.3 Manrope, sans-serif; color: #1a1a1a; min-height: 51px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Пакет 3 в 1: три закриті канали</div>
 <div style="display: flex; align-items: baseline; gap: 8px; font: 700 15px Unbounded, sans-serif; color: #e8332a">359 грн <s style="font: 500 12px Manrope, sans-serif; color: #8a8a8a">999</s></div>
 <button type="button" class="more" onclick="openSel(13)" style="margin-top: auto; border: 0; cursor: pointer; width: 100%">Детальніше<i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></i></button>
@@ -387,10 +410,10 @@ a{color:#e8332a}a:hover{color:#1a1a1a}
 <section style="background: #1a1a1a">
 <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-top: 22px; padding-bottom: 28px; flex-wrap: wrap">
 <div style="display: flex; flex-direction: column; gap: 4px">
-<div style="font: 600 14px Unbounded, sans-serif; color: #ffffff">Є питання?</div>
+<div style="font: 600 14px Unbounded, sans-serif; color: #ffffff">Лишилися питання?</div>
 <div style="font-size: 13px; color: #cfcfcf">Мій AI-агент відповість одразу</div>
 </div>
-<a href="https://t.me/content_tatiana_bot" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1.5px solid #ffffff; color: #ffffff; text-decoration: none; font: 600 13px Manrope, sans-serif; border-radius: 999px">Запитати агента</a>
+<a href="https://t.me/content_tatiana_bot" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1.5px solid #ffffff; color: #ffffff; text-decoration: none; font: 600 13px Manrope, sans-serif; border-radius: 999px">Лишилися питання?</a>
 </div>
 </section>
 
@@ -405,13 +428,14 @@ a{color:#e8332a}a:hover{color:#1a1a1a}
 <div style="font: 500 15px/1.55 Manrope, sans-serif; color: #3d3d3d; white-space: pre-line"><span data-f="desc"></span></div>
 <div style="font: 500 14px/1.5 Manrope, sans-serif; color: #6b6b6b; margin-top: 12px"><span data-f="how"></span></div>
 <div style="display: flex; align-items: baseline; gap: 10px; margin: 16px 0 14px"><span style="font: 700 26px Unbounded, sans-serif; color: #e8332a">359 грн</span><s style="font: 500 15px Manrope, sans-serif; color: #8a8a8a">999 грн</s></div>
-<a data-a="href:href" href="#" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; background: #e8332a; color: #ffffff; text-decoration: none; font: 700 15px Manrope, sans-serif; border-radius: 999px">Забрати зі знижкою</a>
+<a class="cta" data-a="href:href" href="#" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; background: #e8332a; color: #ffffff; text-decoration: none; font: 700 15px Manrope, sans-serif; border-radius: 999px">Забрати зі знижкою</a>
 <div style="font: 500 12px/1.4 Manrope, sans-serif; color: #8a8a8a; text-align: center; margin-top: 10px">Оплата і доступ в Telegram-агенті @content_tatiana_bot</div>
 </div>
 </div>
 </div>
 
-<a href="https://t.me/content_tatiana_bot" aria-label="Написати агенту" style="position: fixed; right: 16px; bottom: 16px; width: 54px; height: 54px; border-radius: 18px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,.25); z-index: 6">
+<a class="ask" href="https://t.me/content_tatiana_bot">Лишилися питання?</a>
+<a class="agentbtn" href="https://t.me/content_tatiana_bot" aria-label="Лишилися питання? Написати агенту" style="position: fixed; right: 16px; bottom: 16px; width: 54px; height: 54px; border-radius: 18px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,.25); z-index: 6">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"></path></svg>
 </a>
 
