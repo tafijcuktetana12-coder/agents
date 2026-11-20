@@ -492,4 +492,10 @@ fetch(FEED).then(function(r){return r.json()}).then(function(list){if(!list||!li
 function show(){var it=list[i%list.length];i++;el.innerHTML='<i>✓</i><div>'+it.text.replace(/</g,'&lt;')+'<small>'+ago(it.at)+'</small></div>';el.classList.add('on');setTimeout(function(){el.classList.remove('on')},5000)}
 setTimeout(function(){show();setInterval(show,25000)},8000)}).catch(function(){})})();
 </script>
+<script>(function(){var B='https://worker-production-f139.up.railway.app/saleview';
+function ping(q){try{var u=0,tg=window.Telegram&&Telegram.WebApp;if(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user)u=tg.initDataUnsafe.user.id;
+(new Image()).src=B+'?u='+u+'&s='+(u?'tg':'web')+q+'&r='+Math.random();}catch(e){}}
+ping('&e=open');
+document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';
+if(h.indexOf('content_tatiana_bot')<0)return;var m=h.match(/start=([a-z0-9_]+)/i);ping('&e=buy&k='+(m?m[1]:'ask'));},true);})();</script>
 </body></html>
