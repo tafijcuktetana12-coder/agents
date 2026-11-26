@@ -62,7 +62,8 @@ function kyiv(){const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Kyiv',
  const g=t=>+p.find(x=>x.type===t).value;return{y:g('year'),m:g('month'),d:g('day'),h:g('hour')}}
 function openN(){const k=kyiv();if(k.y>2026)return 31;if(k.y<2026||k.m<12)return 0;return k.h>=9?k.d:k.d-1}
 let seen={};try{seen=JSON.parse(localStorage.getItem('av_seen')||'{}')}catch(e){}
-const N=openN();
+const ALL=/[?&]all=1/.test(location.search)||location.hash==='#all';  // 26.11: перегляд усіх віконець для Валентини
+const N=ALL?31:openN();
 function plural(n){const a=n%10,b=n%100;return a==1&&b!=11?'день':a>=2&&a<=4&&(b<10||b>=20)?'дні':'днів'}
 function info(){const el=document.getElementById('info');
  if(N==0){const k=kyiv();const left=k.m==11?31-k.d:1;el.textContent='Старт 1 грудня о 9:00 · ще '+left+' '+plural(left);}
