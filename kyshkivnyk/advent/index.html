@@ -1,0 +1,88 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Адвент «Здорові свята»</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1d5b3c;--g2:#2f7d55;--mint:#e6f4ec;--pink:#e0457b;--ink:#1d2a22}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Montserrat,system-ui,sans-serif;color:var(--ink);min-height:100vh;
+background:linear-gradient(180deg,#e3f3e9 0%,#ffffff 55%,#fdf0f4 100%);padding:22px 16px 40px;overflow-x:hidden}
+.tag{display:inline-block;background:var(--g);color:#fff;font-weight:800;font-size:11px;letter-spacing:2px;padding:6px 12px;border-radius:20px}
+h1{font-weight:800;font-size:34px;line-height:1.05;color:var(--g);margin-top:12px}
+h1 i{font-family:'Playfair Display',serif;color:var(--pink)}
+.sub{font-size:14px;line-height:1.45;margin:10px 0 4px;color:#3b4a40}
+.info{font-size:13px;font-weight:600;color:var(--g2);margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px 6px;margin:20px 0 10px}
+.ball{text-align:center;cursor:pointer;position:relative}
+.ball .cap{width:8px;height:7px;background:#c9d6cd;margin:0 auto;border-radius:2px}
+.ball .b{width:54px;height:54px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;
+font-weight:800;font-size:17px;box-shadow:0 8px 16px rgba(29,91,60,.25);transition:transform .25s}
+.green{background:radial-gradient(circle at 35% 30%,#8fd3ac,#2f7d55 45%,#123d27);color:#fff}
+.white{background:radial-gradient(circle at 35% 30%,#ffffff,#eef7f1 50%,#bcd8c6);color:var(--g)}
+.pinkb{background:radial-gradient(circle at 35% 30%,#ffc1d6,#e0457b 45%,#8a1d45);color:#fff}
+.lock{opacity:.38;filter:saturate(.6)}
+.today .b{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--pink),0 0 24px rgba(224,69,123,.6);animation:pulse 1.8s infinite}
+.seen .b::after{content:'✓';position:absolute;font-size:11px;margin:38px 0 0 38px;background:#fff;color:var(--g);border-radius:50%;width:18px;height:18px;line-height:18px}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.gift{position:absolute;top:-6px;right:2px;font-size:15px}
+.legend{font-size:12px;color:#5d6b62;text-align:center;margin-bottom:14px}
+.ov{position:fixed;inset:0;background:rgba(18,40,28,.55);display:none;align-items:flex-end;justify-content:center;z-index:9}
+.ov.on{display:flex}
+.card{background:#fff;width:100%;max-width:520px;max-height:88vh;overflow:auto;border-radius:24px 24px 0 0;padding:0 0 20px;animation:up .3s}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.card img{width:100%;display:block;border-radius:24px 24px 0 0}
+.cb{padding:16px 18px 0}
+.cb small{color:var(--pink);font-weight:800;font-size:12px;letter-spacing:1px}
+.cb h3{color:var(--g);font-size:20px;line-height:1.2;margin:6px 0 10px}
+.cb p{font-size:15px;line-height:1.55}
+.cb code{background:var(--mint);color:var(--g);padding:1px 6px;border-radius:6px;font-weight:800}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;font:800 15px Montserrat,sans-serif;margin-top:12px;cursor:pointer;text-align:center;text-decoration:none}
+.bg{background:var(--g);color:#fff}.bp{background:var(--pink);color:#fff}.bl{background:var(--mint);color:var(--g)}
+.snow{position:fixed;top:-12px;color:#9fd1b4;pointer-events:none;animation:fall linear infinite;z-index:0}
+@keyframes fall{to{transform:translateY(110vh) rotate(180deg)}}
+.wrap{position:relative;z-index:1}
+.note{font-size:11px;color:#7a877f;text-align:center;margin-top:16px}
+</style></head><body><div class="wrap">
+<span class="tag">АДВЕНТ · ГРУДЕНЬ</span>
+<h1>Здорові <i>свята</i></h1>
+<p class="sub">31 віконце без цукру, глютену і лактози: сніданки, обіди, вечері і мої підказки для кишківника ❤</p>
+<div class="info" id="info"></div>
+<div class="grid" id="grid"></div>
+<div class="legend">🎁 24 грудня подарунок · кожне віконце відкривається у свій день о 9:00</div>
+<div class="note">Валентина Швець · нутриціолог, health-коуч<br>Меню не замінює особистої консультації спеціаліста</div>
+</div>
+<div class="ov" id="ov" onclick="if(event.target.id==='ov')cl()"><div class="card" id="card"></div></div>
+<script>
+const D=[{"img": "p-02", "t": "Без глютену", "x": "Перше, з чого я починаю з усіма клієнтами: прибираємо пшеницю.\n\nЗамість неї <b>кіноа, гречка, бурий рис, пшоно і сочевиця</b>. Вони дають ситість і енергію, а кишківнику не доводиться боротися з глютеном.\n\n<i>Спробуйте сьогодні замінити хліб чи макарони хоча б в одному прийомі їжі</i> 😉", "k": ""}, {"img": "p-02", "t": "Без лактози", "x": "Молоко і вершки легко замінити, і смак від цього тільки виграє.\n\nМої альтернативи: <b>кокосове молоко та вершки, масло гхі</b> (в ідеалі козяче) і <b>витриманий козячий або овечий сир</b>.\n\nУ святкових стравах кокосові вершки працюють чудово, перевірено ❤", "k": ""}, {"img": "p-02", "t": "Замість цукру", "x": "Солодке на свята можна, якщо правильно обрати, чим підсолоджувати.\n\nЗамість цукру я використовую <b>стевію, еритритол, монкфрут або кероб</b>.\n\n<i>Так десерт лишається десертом, а травлення не страждає.</i>", "k": ""}, {"img": "p-02", "t": "Ферментовані овочі щодня", "x": "Ось маленька звичка, яка дуже допомагає кишківнику.\n\nЩодня додавайте <b>ферментовані овочі: квашену капусту, буряк, огірки</b>. А ще <b>неактивні харчові дріжджі</b>.\n\nЛожка квашеної капусти до будь-якої страви вже рахується 😉", "k": ""}, {"img": "p-10", "t": "Конструктор здорової тарілки", "x": "Збережіть собі цю схему, вона працює і в будні, і за святковим столом.\n\n🥦 <b>50% овочі та клітковина:</b> різні види капусти, броколі, зелень, помідори, морква, селера і обов'язково ферментовані овочі\n🐟 <b>25% чистий білок:</b> дика риба (скумбрія, лосось, хек, тунець), морепродукти, птиця, яйця, печінка. Без свинини\n🍚 <b>25% складні вуглеводи без глютену:</b> бурий рис, гречка, кіноа, пшоно, сочевиця, охолоджена картопля або батат\n🥑 <b>+ корисні жири:</b> масло гхі, кокосове молоко, авокадо, оливкова олія, горіхова паста, печінка тріски, сало помірно", "k": ""}, {"img": "p-03", "t": "Сніданок понеділка", "x": "<b>Омлет із 2 яєць на воді</b> (можна з зеленню), 2-3 ложки бурого рису, ½ авокадо, 3-5 помідорчиків черрі і жменя ягід: малина, чорниця, полуниця.\n\n<i>Простий, ситий і без жодної важкості до обіду.</i>", "k": ""}, {"img": "p-03", "t": "Обід понеділка: гарбузовий суп", "x": "<b>Суп із гарбуза з червоною (дикою) рибою</b> і ложкою безглютенової вівсянки.\n\nКокосове молоко чи вершки та гарбузове насіння додаються в кінці. Дуже затишний грудневий суп ❤", "k": ""}, {"img": "p-03", "t": "Вечеря понеділка", "x": "<b>Запечене куряче філе із сумішшю овочів</b>: різні види капусти, спаржева квасоля, цибуля, морква і батат або картопля. Зверху полити кокосовим молоком.\n\n💡 <b>Чому картоплю краще холодну?</b> Картоплю і батат найкорисніше їсти охолодженими. Під час охолодження утворюється <i>резистентний крохмаль</i>, ідеальна їжа для корисної мікрофлори кишківника.", "k": ""}, {"img": "p-04", "t": "Сніданок вівторка", "x": "<b>2-4 ложки гречки з маслом гхі</b> (краще козячим), 2 котлетки з нежирного м'яса на пару або запечені: куряче, індиче, кроляче, теляче.\n\nДо них ферментована капуста і буряк, ½ авокадо і жменька ягід.", "k": ""}, {"img": "p-04", "t": "Обід вівторка", "x": "<b>Паштет із птиці на гречаному хлібці</b> (або з бурого рису), доступні овочі, шматочок козячого чи овечого витриманого сиру і 2-3 бразильські горішки.\n\n<i>Такий обід зручно взяти з собою на роботу.</i>", "k": ""}, {"img": "p-04", "t": "Вечеря вівторка: скумбрія", "x": "<b>Запечена скумбрія</b> або інша жирна чи напівжирна риба дикого вилову (не штучно вирощена) з різними видами капусти та інших овочів.\n\nРибу завжди обирайте <b>дикого вилову</b>, це важливо ❤", "k": ""}, {"img": "p-04", "t": "Правило бразильського горіха", "x": "Бразильський горіх дуже корисний, але тут важлива міра.\n\n<b>Рівно 2-3 штуки на день, не більше!</b> Вони містять рекордну кількість селену, тому важливо уникати передозування.\n\n<i>Під час свят, коли горіхи стоять у вазочці на столі, про це легко забути</i> 😉", "k": ""}, {"img": "p-05", "t": "Сніданок середи: салат із креветками", "x": "<b>Салат із креветками, руколою, черрі, авокадо, мигдалевими пластівцями та насінням.</b> Заправка: лимон чи лайм, оливкова олія, гірчиця.\n\nДо нього 2-3 ложки кіноа, ягоди або зелене яблуко (можна запечене з корицею).\n\n<i>Такий салат прикрасить і святковий стіл.</i>", "k": ""}, {"img": "p-05", "t": "Обід середи: борщ", "x": "<b>Борщ із нежирним м'ясом</b> (окрім свинини), хлібець із горіховою пастою і 1 фрукт: зелений банан, грейпфрут, ківі або ягоди.\n\n💡 <b>Чиста горіхова паста.</b> Обирайте пасту з будь-яких горіхів чи насіння (окрім арахісу), де у складі <b>лише 100% горіх</b>, без цукру, додаткових олій і консервантів.", "k": ""}, {"img": "p-05", "t": "Вечеря середи", "x": "<b>Куряча печінка, тушкована зі сливами, цибулею, маслом гхі та спеціями.</b> Або хек з овочами в томаті.\n\nДо неї 2-3 ложки каші з пшона або сочевиці. Печінка зі сливами дуже смачне поєднання, спробуйте ❤", "k": ""}, {"img": "p-06", "t": "Сніданок четверга", "x": "<b>Безглютенові макарони</b> (із сочевиці, гречки або бурого рису) з маслом гхі та харчовими дріжджами.\n\nДо них печінка тріски (½ маленької баночки), квашена капуста, черрі і <b>1 долька чорного шоколаду</b> 😉", "k": ""}, {"img": "p-06", "t": "Обід четверга: суп із морепродуктів", "x": "<b>Суп із морського коктейлю</b>, кореня селери та пастернаку, цибулі, моркви, зеленого горошку і кокосового молока.\n\nДо нього сочевичні булочки з хумусом. <i>Ніжний і дуже святковий на смак.</i>", "k": ""}, {"img": "p-06", "t": "Вечеря четверга", "x": "<b>Курячі гомілки, крильця чи філе, тушковані з овочами та нутом</b> (або квасолею).\n\nІ овочевий салат з оливковою олією або ферментовані овочі.", "k": ""}, {"img": "p-06", "t": "Правильний десерт", "x": "Шоколад на свята можна, якщо обрати правильний.\n\n💡 Шоколад має містити <b>максимальну кількість какао-продуктів</b>. В ідеалі на стевії або монкфруті замість звичайного цукру (можна з керобом).\n\n<i>Читайте склад на звороті плитки, там уся правда</i> 😉", "k": ""}, {"img": "p-07", "t": "Сніданок пʼятниці", "x": "<b>Холодна картопля</b> (відварена в шкірці або запечена), 3-4 шматочки слабосоленого оселедця або скумбрії, квашені огірки чи капуста.\n\nІ <b>желе з вишневих ягід без цукру</b>. Майже святковий стіл уже зранку ❤", "k": ""}, {"img": "p-07", "t": "Обід пʼятниці", "x": "<b>Пюре з зеленого горошку, курка-кебаб у духовці</b>, помідорчики черрі та гуакамоле.\n\n<i>Яскраво, ситно і без жодної пшениці.</i>", "k": ""}, {"img": "p-07", "t": "Вечеря пʼятниці", "x": "<b>Гречка з рибним рієтом</b>: запечений лосось і хек, пасерована цибуля, квашений огірок, оливки. Броколі та інші види капусти на пару, лимон.\n\n💡 <b>Желе замість торта.</b> Багате на колаген желе зі свіжих або заморожених ягід ідеальний десерт. Головне жодного цукру: додавайте стевію, еритритол або монкфрут.", "k": ""}, {"img": "p-08", "t": "Сніданок суботи", "x": "<b>4-5 перепелиних яєць, сочевиця, тунець у власному соку</b>, овочі, салат і ягоди.\n\n<i>Білок, клітковина і ягоди, саме те, щоб не тягнуло на солодке.</i>", "k": ""}, {"img": "p-01", "t": "🎁 Мій подарунок вам на Святвечір", "x": "Сьогодні Святвечір, і я дарую вам <b>увесь свій файл «Здорове меню на тиждень»</b> 🎁\n\nЗбалансований раціон <b>без глютену, лактози і цукру</b> для енергії, краси та здоров'я кишківника: меню на 7 днів, сніданки, обіди, вечері, підказки і конструктор здорової тарілки.\n\nЗбережіть його собі, щоб після свят просто відкрити і готувати ❤", "k": "gift"}, {"img": "p-08", "t": "Обід суботи", "x": "<b>Суп із фрикадельок</b> (нежирний фарш) з бурим рисом, овочами та сумішшю насіння.\nДесерт: кілька наперед замочених або бланшованих волоських горіхів.\n\n💡 <b>Активація горіхів.</b> Замочування або бланшування горіхів перед вживанням обов'язковий крок. Це руйнує фітинову кислоту, покращує засвоєння мінералів і полегшує травлення.", "k": ""}, {"img": "p-08", "t": "Вечеря суботи: мідії", "x": "<b>Мідії, тушковані в томатному соусі або в кокосових вершках</b> з карі, часником, імбиром та лаймом.\n\nДо них 2-3 ложки білого кіноа і ферментовані овочі. <i>Святкова страва, яка готується за 15 хвилин.</i>", "k": ""}, {"img": "p-09", "t": "Сніданок неділі", "x": "<b>Тюфтелі або ліниві голубці</b> з доступного фаршу (окрім свинини), свіжі або ферментовані овочі.\n\nДесерт: <b>чіа, замочене в кокосовому молоці, з ягодами</b>. Чудовий варіант на ранок після свята ❤", "k": ""}, {"img": "", "t": "Запрошую вас у січень", "x": "Свята добігають кінця, і я знаю, що в січні багатьом захочеться <b>розвантажити організм, повернути легкість і привести до ладу травлення</b>.\n\nСаме для цього мій інтенсив <b>«Здоровий кишківник»</b>, група стартує в січні.\n\nДля вас, хто відкривав мій адвент, бронь місця всього <code>159 грн</code> замість 350. Це спеціальна ціна тільки тут, в адвенті.\n\n<i>Хочете почати рік з легкістю? Забронюйте місце, поки діє ціна адвенту</i> 👇", "k": "book"}, {"img": "p-09", "t": "Обід неділі", "x": "<b>Безглютенові хлібці</b> (або сочевичний хліб) з кількома шматочками сала і овочі. І власний десерт: шоколад, кокосова стружка, ягоди, банан, за потреби стевія чи еритритол.\n\n💡 <b>Баланс смаку.</b> Навіть сало є частиною здорового раціону в помірних кількостях! А домашні десерти з натуральною солодкістю банана та ягід чудова альтернатива магазинним.", "k": ""}, {"img": "p-09", "t": "Вечеря неділі: шакшука", "x": "<b>Шакшука</b>: яйця, помідори, солодкий перець. І сочевичні булочки.\n\n<i>Легка вечеря перед Новим роком, щоб завтра прокинутись з енергією.</i>", "k": ""}, {"img": "", "t": "🎄 З Новим роком!", "x": "Ось і останнє віконце. Дякую, що були зі мною цілий грудень ❤\n\nБажаю вам у новому році <b>легкості, енергії і здоров'я</b>, яке починається з тарілки.\n\nСьогодні останній день, коли бронь на інтенсив <b>«Здоровий кишківник»</b> коштує <code>159 грн</code> замість 350. Якщо хочете в січні розвантажитись після свят разом зі мною, забронюйте місце 👇", "k": "book"}],BOT="valentina_shvets_bot";
+const tg=window.Telegram&&Telegram.WebApp;if(tg){tg.expand();tg.setHeaderColor&&tg.setHeaderColor('#e3f3e9')}
+for(let i=0;i<22;i++){const s=document.createElement('div');s.className='snow';s.textContent=i%3?'❄':'✦';s.style.left=Math.random()*100+'vw';
+s.style.animationDuration=(7+Math.random()*9)+'s';s.style.animationDelay=(-Math.random()*12)+'s';s.style.fontSize=(9+Math.random()*12)+'px';document.body.appendChild(s)}
+function kyiv(){const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Kyiv',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',hour12:false}).formatToParts(new Date());
+ const g=t=>+p.find(x=>x.type===t).value;return{y:g('year'),m:g('month'),d:g('day'),h:g('hour')}}
+function openN(){const k=kyiv();if(k.y>2026)return 31;if(k.y<2026||k.m<12)return 0;return k.h>=9?k.d:k.d-1}
+let seen={};try{seen=JSON.parse(localStorage.getItem('av_seen')||'{}')}catch(e){}
+const N=openN();
+function plural(n){const a=n%10,b=n%100;return a==1&&b!=11?'день':a>=2&&a<=4&&(b<10||b>=20)?'дні':'днів'}
+function info(){const el=document.getElementById('info');
+ if(N==0){const k=kyiv();const left=k.m==11?31-k.d:1;el.textContent='Старт 1 грудня о 9:00 · ще '+left+' '+plural(left);}
+ else el.textContent=N>=31?'Усі 31 віконце відкриті ❤':'Сьогодні відкрито віконце '+N+' з 31';}
+function draw(){const g=document.getElementById('grid');g.innerHTML='';
+ D.forEach((w,i)=>{const n=i+1,op=n<=N;const el=document.createElement('div');
+  const col=w.k==='gift'||w.k==='book'?'pinkb':(n%2?'green':'white');
+  el.className='ball'+(op?'':' lock')+(n==N?' today':'')+(seen[n]?' seen':'');
+  el.innerHTML='<div class="cap"></div><div class="b '+col+'">'+n+'</div>'+(w.k==='gift'?'<span class="gift">🎁</span>':'');
+  el.onclick=()=>op?show(n):lockMsg(n);g.appendChild(el)})}
+function lockMsg(n){const t='Це віконце відкриється '+n+' грудня о 9:00 😉';if(tg&&tg.showAlert)tg.showAlert(t);else alert(t)}
+function link(u){if(tg&&tg.openTelegramLink){tg.openTelegramLink(u)}else location.href=u}
+function show(n){const w=D[n-1];seen[n]=1;try{localStorage.setItem('av_seen',JSON.stringify(seen))}catch(e){}
+ let h=(w.img?'<img src="img/'+w.img+'.jpg" alt="">':'')+'<div class="cb"><small>ВІКОНЦЕ '+n+' · '+n+' ГРУДНЯ</small><h3>'+w.t+'</h3><p>'+w.x.replace(/\n/g,'<br>')+'</p>';
+ if(w.k==='gift')h+='<a class="btn bp" href="menu.pdf" target="_blank">🎁 Забрати «Здорове меню на тиждень»</a>';
+ if(w.k==='book')h+='<button class="btn bp" onclick="link(\'https://t.me/'+BOT+'?start=abook\')">🎄 Забронювати за 159 грн</button>';
+ h+='<button class="btn bl" onclick="cl()">До календаря</button></div>';
+ document.getElementById('card').innerHTML=h;document.getElementById('ov').classList.add('on');draw();
+ tg&&tg.HapticFeedback&&tg.HapticFeedback.impactOccurred('light')}
+function cl(){document.getElementById('ov').classList.remove('on')}
+info();draw();
+const q=new URLSearchParams(location.search).get('d');if(q&&+q<=N)show(+q);
+</script></body></html>
